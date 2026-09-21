@@ -1,9 +1,21 @@
 #!/bin/bash
-source /home/joe/secrets/secrets.sh
-export set MQTT_USERNAME=$MQTT_USERNAME
-export set MQTT_PASSWORD=$MQTT_PASSWORD
 date
 echo starting up
+set -euo pipefail
+
+source /home/joe/secrets/secrets.sh
 echo username: $MQTT_USERNAME
-# rtl_433 -F json -M utc -M level -M protocol -f 915M -f 433.92M -H 120 -Y classic -F mqtt://192.168.0.181,retain=0
-rtl_433 -c /home/joe/git/rtl_433/conf/rtl_433.conf
+
+MQTT_HOST="192.168.0.181"
+MQTT_PORT="1883"
+#MQTT_URL="mqtt://${MQTT_HOST}:${MQTT_PORT},retain=False"
+MQTT_URL="mqtt://${MQTT_HOST}:${MQTT_PORT},retain=False,user=${MQTT_USERNAME},pass=${MQTT_PASSWORD}"
+
+exec rtl_433 \
+  -M utc \
+  -M level \
+  -M protocol \
+  -f 915M \
+  -Y classic \
+  -s 250k \
+  -F "$MQTT_URL"
