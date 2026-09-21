@@ -105,6 +105,9 @@ Skip frames below estimated noise level to reduce cpu load.
 .TP
 [ \fB\-Y\fI ampest | magest\fP ]
 Choose amplitude or magnitude level estimator.
+.TP
+[ \fB\-Y\fI filter=<value>\fP ]
+Manual FM low\-pass filter cutoff to separate simultaneous transmissions: us (1\-9999, e.g. 20), Hz (10000+), or ratio of sample rate (0.0\-1.0).
 .SS "Analyze/Debug options"
 .TP
 [ \fB\-A\fI\fP ]
@@ -301,10 +304,13 @@ invert : invert all bits
 reflect : reflect each byte (MSB first to MSB last)
 .RE
 .RS
-decode_uart : UART 8n1 (10\-to\-8) decode
+decode_uart=<8n1|8n2|8o1> : UART 8n1 (10\-to\-8), 8n2, 8o1 (11\-to\-8) decode
 .RE
 .RS
 decode_dm : Differential Manchester decode
+.RE
+.RS
+decode_mc : Manchester decode
 .RE
 .RS
 match=<bits> : only match if the <bits> are found

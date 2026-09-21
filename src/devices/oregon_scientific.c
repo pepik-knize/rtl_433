@@ -262,6 +262,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C", "Temperature", DATA_FORMAT, "%.2f C", DATA_DOUBLE, get_os_temperature(msg),
                 "humidity",            "Humidity",        DATA_FORMAT, "%u %%",     DATA_INT,        get_os_humidity(msg),
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -284,6 +285,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "wind_max_m_s", "Gust",             DATA_FORMAT, "%.1f m/s",DATA_DOUBLE, gustWindspeed,
                 "wind_avg_m_s", "Average",        DATA_FORMAT, "%.1f m/s",DATA_DOUBLE, avgWindspeed,
                 "wind_dir_deg",    "Direction",    DATA_FORMAT, "%.1f degrees",DATA_DOUBLE, quadrant,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -317,6 +319,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
                 "humidity",     "Humidity",             DATA_FORMAT, "%u %%",     DATA_INT,        get_os_humidity(msg),
                 "pressure_hPa",    "Pressure",        DATA_FORMAT, "%.0f hPa",     DATA_DOUBLE, pressure,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -339,6 +342,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "temperature_C",    "Celsius",          DATA_FORMAT,    "%.2f C", DATA_DOUBLE, temp_c,
                 "humidity",         "Humidity",         DATA_FORMAT,    "%u %%", DATA_INT, get_os_humidity(msg),
                 "pressure_hPa",     "Pressure",         DATA_FORMAT,    "%.0f hPa", DATA_DOUBLE, pressure,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -359,6 +363,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "rain_rate_mm_h",    "Rain Rate",    DATA_FORMAT, "%.2f mm/h", DATA_DOUBLE, rain_rate,
                 "rain_mm", "Total Rain", DATA_FORMAT, "%.2f mm", DATA_DOUBLE, total_rain,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -378,6 +383,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "channel",             "Channel",         DATA_INT,        channel,
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -406,6 +412,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "channel",             "Channel",         DATA_INT,        channel,
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -425,6 +432,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
                 "humidity",            "Humidity",        DATA_FORMAT, "%u %%",     DATA_INT,        get_os_humidity(msg),
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -443,6 +451,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Temperature",  DATA_FORMAT, "%.2f C", DATA_DOUBLE, get_os_temperature(msg),
                 "humidity",         "Humidity",     DATA_FORMAT, "%u %%",   DATA_INT,    get_os_humidity(msg),
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -472,6 +481,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "channel",          "Channel",      DATA_INT,    channel, // 1 to 5
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "radio_clock",      "Radio Clock",  DATA_STRING, clock_str,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -489,6 +499,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                     "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                     "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
                     "humidity",            "Humidity",        DATA_FORMAT, "%u %%",     DATA_INT,        get_os_humidity(msg),
+                    "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                     NULL);
             /* clang-format on */
             decoder_output_data(decoder, data);
@@ -505,11 +516,13 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
 
             /* clang-format off */
             data_t *data = data_make(
-                    "model",                 "",                        DATA_STRING, (sensor_id == ID_THN129) ? "Oregon-THN129" : "Oregon-RTHN129",
+                    "model",                 "",                DATA_COND, sensor_id == ID_THN129, DATA_STRING, "Oregon-THN129",
+                    "model",                 "",                DATA_COND, sensor_id != ID_THN129, DATA_STRING, "Oregon-RTHN129",
                     "id",                        "House Code",    DATA_INT,        device_id,
                     "channel",             "Channel",         DATA_INT,        channel, // 1 to 5
                     "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                     "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
+                    "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                     NULL);
             /* clang-format on */
             decoder_output_data(decoder, data);
@@ -548,6 +561,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
                 "humidity",             "Humidity",     DATA_FORMAT, "%u %%", DATA_INT, get_os_humidity(msg),
                 "pressure_hPa",    "Pressure",        DATA_FORMAT, "%.2f hPa", DATA_DOUBLE, pressure,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -576,6 +590,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "uvi",                        "UV Index",     DATA_FORMAT, "%.0f", DATA_DOUBLE, (double)uvidx,
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 //"channel",                "Channel",        DATA_INT,        channel,
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -594,6 +609,7 @@ static int oregon_scientific_v2_1_decode(r_device *decoder, bitbuffer_t *bitbuff
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Temperature",  DATA_FORMAT, "%.2f C", DATA_DOUBLE, get_os_temperature(msg),
                 "humidity",         "Humidity",     DATA_FORMAT, "%u %%",   DATA_INT,    get_os_humidity(msg),
+                "mic",                  "Integrity",        DATA_STRING,    "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -643,6 +659,8 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
     // CM180 preamble is 00 00 00 46, with 0x46 already data
     uint8_t const cm180_pattern[] = {0x00, 0x46};
     uint8_t const cm180i_pattern[] = {0x00, 0x4A};
+    // CM130 preamble is 00 00 00 60, with 0x60 already data
+    uint8_t const cm130_pattern[] = {0x00, 0x00, 0x00, 0x60};
     // workaround for a broken manchester demod
     // CM160 preamble might look like 7f ff ff aa, i.e. ff ff f5
     uint8_t const alt_pattern[] = {0xff, 0xf5};
@@ -650,6 +668,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
     int os_pos     = bitbuffer_search(bitbuffer, 0, 0, os_pattern, 16) + 16;
     int cm180_pos  = bitbuffer_search(bitbuffer, 0, 0, cm180_pattern, 16) + 8;  // keep the 0x46
     int cm180i_pos = bitbuffer_search(bitbuffer, 0, 0, cm180i_pattern, 16) + 8; // keep the 0x46
+    int cm130_pos  = bitbuffer_search(bitbuffer, 0, 0, cm130_pattern, sizeof(cm130_pattern) * 8) + 24;  // keep the 0x60
     int alt_pos    = bitbuffer_search(bitbuffer, 0, 0, alt_pattern, 16) + 16;
 
     if (bitbuffer->bits_per_row[0] - os_pos >= 7 * 8) {
@@ -667,6 +686,11 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
     else if (bitbuffer->bits_per_row[0] - cm180i_pos >= 84) {
         msg_pos = cm180i_pos;
         msg_len = bitbuffer->bits_per_row[0] - cm180i_pos;
+    }
+
+    else if (bitbuffer->bits_per_row[0] - cm130_pos >= 96) {
+        msg_pos = cm130_pos;
+        msg_len = bitbuffer->bits_per_row[0] - cm130_pos;
     }
 
     else if (bitbuffer->bits_per_row[0] - alt_pos >= 7 * 8) {
@@ -702,15 +726,18 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
             decoder_logf(decoder, 1, __func__, "THGR810 failed value sanity check: temp %.1fC hum %d%%.", temp_c, humidity);
             return DECODE_FAIL_SANITY;
         }
+        int tx_button = msg[0] & 1; // unused sensor id bits
 
         /* clang-format off */
         data_t *data = data_make(
-                "model",                    "",                     DATA_STRING, "Oregon-THGR810",
-                "id",                         "House Code", DATA_INT,        device_id,
-                "channel",                "Channel",        DATA_INT,        channel,
-                "battery_ok",          "Battery",         DATA_INT,    !battery_low,
-                "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
-                "humidity",             "Humidity",     DATA_FORMAT, "%u %%", DATA_INT, humidity,
+                "model",            "",             DATA_STRING, "Oregon-THGR810",
+                "id",               "House Code",   DATA_INT,    device_id,
+                "channel",          "Channel",      DATA_INT,    channel,
+                "button",           "Button",       DATA_COND,   tx_button, DATA_INT, tx_button,
+                "battery_ok",       "Battery",      DATA_INT,    !battery_low,
+                "temperature_C",    "Celsius",      DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
+                "humidity",         "Humidity",     DATA_FORMAT, "%u %%", DATA_INT, humidity,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -729,6 +756,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "channel",                "Channel",        DATA_INT,        channel,
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "temperature_C",    "Celsius",        DATA_FORMAT, "%.2f C", DATA_DOUBLE, temp_c,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -747,6 +775,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "channel",                "Channel",        DATA_INT,        channel,
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "uvi",                        "UV Index",     DATA_FORMAT, "%.0f", DATA_DOUBLE, (double)uvidx,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -782,6 +811,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "rain_rate_in_h",    "Rain Rate",    DATA_FORMAT, "%5.1f in/h", DATA_DOUBLE, rain_rate,
                 "rain_in", "Total Rain", DATA_FORMAT, "%7.3f in", DATA_DOUBLE, total_rain,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -802,6 +832,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "battery_ok",          "Battery",         DATA_INT,    !battery_low,
                 "rain_rate_in_h",    "Rain Rate",    DATA_FORMAT, "%.1f in/h", DATA_DOUBLE, rain_rate,
                 "rain_in", "Total Rain", DATA_FORMAT, "%.1f in", DATA_DOUBLE, total_rain,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -828,7 +859,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
 
         // Sanity check values
         if (gustWindspeed < 0 || gustWindspeed > 56 || avgWindspeed < 0 || avgWindspeed > 56) {
-            decoder_logf(decoder, 1, __func__, "WGR800 failed value sanity check: wind_max_m_s %.1f wind_avg_m_s %.1f wind_dir_deg %.1f.", gustWindspeed, avgWindspeed, quadrant);
+            decoder_logf(decoder, 1, __func__, "WGR800 failed value sanity check: wind_max_m_s %.1f wind_avg_m_s %.1f.", gustWindspeed, avgWindspeed);
             return DECODE_FAIL_SANITY;
         }
 
@@ -841,6 +872,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "wind_max_m_s",             "Gust",             DATA_FORMAT,    "%.1f m/s",DATA_DOUBLE, gustWindspeed,
                 "wind_avg_m_s",        "Average",        DATA_FORMAT,    "%.1f m/s",DATA_DOUBLE, avgWindspeed,
                 "wind_dir_deg",    "Direction",    DATA_FORMAT,    "%.1f degrees",DATA_DOUBLE, quadrant,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -873,6 +905,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
  //               "total_As",         "Total Amps",           DATA_FORMAT,   "%d As", DATA_INT, (int)total_amps,
                 "power_W",          "Power",                DATA_FORMAT,   "%7.4f W", DATA_DOUBLE, current_watts,
                 "energy_kWh",       "Energy",               DATA_FORMAT, "%7.4f kWh",DATA_DOUBLE, total_kWh,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -905,6 +938,7 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
                 "power_W",          "Power",            DATA_FORMAT, "%d W",DATA_INT, ipower,
                 "energy_kWh",       "Energy",           DATA_COND,   itotal != 0, DATA_FORMAT, "%.2f kWh",DATA_DOUBLE, total_energy,
                 "sequence",         "sequence number",  DATA_INT,    sequence,
+                "mic",              "Integrity",    DATA_STRING, "CHECKSUM",
                 NULL);
         /* clang-format on */
         decoder_output_data(decoder, data);
@@ -949,6 +983,40 @@ static int oregon_scientific_v3_decode(r_device *decoder, bitbuffer_t *bitbuffer
         decoder_output_data(decoder, data);
         return 1;
     }
+    else if (msg[0] == 0x60) { // Owl CM130 readings
+        // 12-byte message (after reflect_nibbles): 60 II II PP 00 P. EE EE EE EE XX
+        // checksum: CRC-8 (poly 0x07) over bytes 1..10, swapped-nibble in byte 11
+        if (crc8(&msg[1], 10, 0x07, 0x00) != swap_nibbles(msg[11])) {
+            decoder_log_bitrow(decoder, 1, __func__, msg, 96, "CM130 checksum fail");
+            return DECODE_FAIL_MIC;
+        }
+
+        for (int k = 0; k < 12; k++) { // Reverse nibbles
+            msg[k] = swap_nibbles(msg[k]);
+        }
+
+        int id           = msg[2];
+        int power_w      = (((msg[4] << 8) | msg[3]) * 16); // 16-bit LE count, 16 W per count
+        // 32-bit LE cumulative energy counter. Scale is 1/8192 kWh per count
+        // (8192 = 2^13 = 16 * 512, matching the power scale of 16); fit
+        // against the console (see #1493). This is the meter's absolute
+        // lifetime total; the console display shows a relative value with a
+        // device-specific offset, so this reads higher than the console.
+        uint32_t energy_cnt = (uint32_t)msg[6] | ((uint32_t)msg[7] << 8) | ((uint32_t)msg[8] << 16) | ((uint32_t)msg[9] << 24);
+        float energy_kwh    = energy_cnt / 8192.0f;
+
+        /* clang-format off */
+        data_t *data = data_make(
+                "model",            "",                 DATA_STRING, "Oregon-CM130",
+                "id",               "House Code",       DATA_INT,    id,
+                "power_W",          "Power",            DATA_FORMAT, "%d W", DATA_INT, power_w,
+                "energy_kWh",       "Energy",           DATA_FORMAT, "%.2f kWh", DATA_DOUBLE, (double)energy_kwh,
+                "mic",              "Integrity",        DATA_STRING, "CRC",
+                NULL);
+        /* clang-format on */
+        decoder_output_data(decoder, data);
+        return 1;
+    }
     else if ((msg[0] != 0) && (msg[1] != 0)) { // sync nibble was found and some data is present...
         decoder_log(decoder, 1, __func__, "Message received from unrecognized Oregon Scientific v3 sensor.");
         decoder_log_bitrow(decoder, 1, __func__, msg, msg_len, "Message");
@@ -978,6 +1046,7 @@ static char const *const output_fields[] = {
         "model",
         "id",
         "channel",
+        "button",
         "battery_ok",
         "temperature_C",
         "humidity",
@@ -994,13 +1063,14 @@ static char const *const output_fields[] = {
         "energy_kWh",
         "radio_clock",
         "sequence",
+        "mic",
         NULL,
 };
 
 r_device const oregon_scientific = {
         .name        = "Oregon Scientific Weather Sensor",
         .modulation  = OOK_PULSE_MANCHESTER_ZEROBIT,
-        .short_width = 440, // Nominal 1024Hz (488us), but pulses are shorter than pauses
+        .short_width = 440, // Nominal 1024 Hz (488 us), but pulses are shorter than pauses
         .long_width  = 0,   // not used
         .reset_limit = 2400,
         .decode_fn   = &oregon_scientific_decode,
